@@ -1,0 +1,97 @@
+<header>
+  <nav class="navbar navbar-expand-lg bg-body fixed-top">
+      <div class="container-fluid justify-content-center">
+          <a class="navbar-brand" href="#">
+            <img src="/assets/images/logo.svg" alt="Logo" class="bd-placeholder-img rounded-0"
+            style="width: 140px; max-height: 100px;">
+          </a>
+      </div>
+  </nav>
+</header>
+
+<body>
+    <div class="container mt-5 pt-4">
+        <h4 class="text-center">Candidature Details</h4>
+        <hr class="my-2" style="border: 1px solid black;">
+        <form [formGroup]="candidatureForm">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="field1" class="form-label">Experience (in years) </label>
+                    <input type="text" class="form-control" id="field1" placeholder="1 Year"
+                        formControlName="experience">
+                        <small *ngIf="candidatureForm.get('experience')?.invalid && candidatureForm.get('experience')?.touched" class="text-danger">
+                            Experience is required
+                         </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field2" class="form-label">Current Location</label>
+                    <input type="text" class="form-control" id="field2" placeholder="Pune"
+                        formControlName="currentLocation">
+                        <small *ngIf="candidatureForm.get('currentLocation')?.invalid && candidatureForm.get('currentLocation')?.touched" class="text-danger">
+                            Current Location is required
+                         </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field3" class="form-label">Process Location</label>
+                    <input type="text" class="form-control" id="field3" placeholder="Remote"
+                        formControlName="processLocation">
+                        <small *ngIf="candidatureForm.get('processLocation')?.invalid && candidatureForm.get('processLocation')?.touched" class="text-danger">
+                            Process Location is required
+                         </small>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="field4" class="form-label">Role Type</label>
+                    <input type="text" class="form-control" id="field4" placeholder="Voice & Non-Voice"
+                        formControlName="roleType">
+                        <small *ngIf="candidatureForm.get('roleType')?.invalid && candidatureForm.get('roleType')?.touched" class="text-danger">
+                            Role Type is required
+                         </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field5" class="form-label">Third Party assessment (if any)</label>
+                    <input type="text" class="form-control" id="field5" placeholder="N.A"
+                        formControlName="thirdPartyAssessment">
+                       
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field6" class="form-label">Score in third party assessment</label>
+                    <input type="text" class="form-control" id="field6" placeholder="N.A"
+                        formControlName="scoreInThirdPartyAssessment">
+                       
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="field7" class="form-label">Regional languages (if any)</label>
+                    <input type="text" class="form-control" id="field7" placeholder="Kannada, Marathi and Hindi"
+                        formControlName="regionalLanguages">
+                       
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field8" class="form-label">Foreign languages (if any)</label>
+                    <input type="text" class="form-control" id="field8" placeholder="N.A"
+                        formControlName="foreignLanguages">
+                        
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field9" class="form-label"></label>
+                    <!-- <input type="text" class="form-control" id="field9" placeholder="Enter text"> -->
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 150px;">
+                <button (click)="onSubmit()" 
+                    class="btn btn-danger px-5 py-2" style="width: 410px;">Save & Continue</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+</body>

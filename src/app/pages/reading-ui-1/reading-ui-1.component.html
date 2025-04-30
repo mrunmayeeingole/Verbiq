@@ -1,0 +1,236 @@
+<div *ngIf="!permissionsGranted" class="exam-container">
+  <div class="permission-error">
+    <h2>Camera and Microphone Access Required</h2>
+    <p>You need to allow camera and microphone access to take this exam.</p>
+    <button (click)="checkPermissions()">Check Permissions</button>
+    <button (click)="goBack()">Back to Instructions</button>
+  </div>
+</div>
+<div *ngIf="apiError" class="error-container">
+  <div class="error-content">
+    <div class="error-icon">
+      <i class="bi bi-exclamation-circle"></i>
+    </div>
+    <h2 class="error-title">Oops! Something went wrong</h2>
+    <p class="error-message">{{ apiError }}</p>
+    <div class="error-actions">
+      <button class="retry-button" (click)="getAllTypes()">
+        <i class="bi bi-arrow-clockwise me-2"></i>
+        Try Again
+      </button>
+    </div>
+  </div>
+</div>
+<nav
+  *ngIf="permissionsGranted && !apiError"
+  class="navbar navbar-expand-lg navbar-light bg-white border-bottom"
+>
+  <div class="container-fluid row p-0 m-0">
+    <div class="col-8 col-lg-8">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngFor="let type of typesData" class="nav-item">
+          <a
+            class="nav-link"
+            [ngClass]="{ active: activeStage === type.typeName }"
+            (click)="setActiveType(type.typeName, type._id)"
+            href="javascript:void(0);"
+            [style.color]="
+              activeStage === type.typeName ? '#01475D' : '#ACACAC'
+            "
+          >
+            {{ type?.typeName }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 col-lg-4 float-end px-0">
+      <div class="d-flex align-items-end justify-content-end me-0">
+        <img
+          src="assets/images/logo-head.JPG"
+          alt="Recruitory Logo"
+          style="height: 50px"
+        />
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="activeStage === 'Reading' && !apiError">
+  <div class="container-fluid">
+    <div class="row m-0 p-0">
+      <div class="col-6 col-lg-6">
+        <h2 class="fw-normal w-50 textColor border-title py-3 bottom-border">
+          {{ questionDetails?.heading }}
+        </h2>
+      </div>
+      <div class="col-6 col-lg-6">
+        <p class="text-end text-muted p-3 textColor" style="font-size: 16px">
+          {{ remainingTime }}
+        </p>
+      </div>
+    </div>
+    <div
+      *ngIf="questionDetails?.questionType === 'text'"
+      class="container position-relative"
+    >
+      <div class="paragraph-box p-3">
+        <p class="justified-text fw-mediumno-copy" preventRightClick>
+          {{ questionDetails?.question }}
+        </p>
+      </div>
+
+      <div
+        *ngIf="questionDetails?.questionType === 'mcq'"
+        class="paragraph-box p-3"
+      >
+        <div class="paragraph-box p-3">
+          <div
+            *ngIf="questionDetails.passage"
+            class="justified-text passage-text mb-3 no-copy"
+            preventRightClick
+          >
+            {{ questionDetails.passage }}
+          </div>
+
+          <div class="question-text mb-4 no-copy" preventRightClick>
+            {{ questionDetails.question }}
+          </div>
+          <div class="mcq-container">
+            <div *ngFor="let option of questionDetails.options; let i = index">
+              <div
+                class="mcq-option"
+                (click)="onOptionSelect(option)"
+                [class.selected]="selectedAnswer === option.optionText"
+              >
+                <span class="option-letter">{{ ["A", "B", "C", "D"][i] }}</span>
+                <span class="option-text">{{ option.optionText }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row fixed-bottom bottomDiv">
+        <div class="col-12 mx-auto text-center"></div>    
+
+        <div class="col-lg-12 m-0 p-0 mx-auto text-center mt-3">
+          <div class="microphone-container pb-3">
+            <!-- <button
+              
+              class="btn btn-circle"
+             
+            > -->
+            <img
+              *ngIf="!recordingComplete"
+              [ngClass]="{
+                'btn-danger': isRecording && !isPaused,
+                'btn-light ': !isRecording || isPaused
+              }"
+              (click)="toggleRecording()"
+              [src]="
+                isRecording && !isPaused
+                  ? '/assets/images/mic.svg '
+                  : '/assets/images/9036216.png'
+              "
+              width="80"
+              alt="Microphone"
+            />
+            <div
+              *ngIf="recordingComplete && audioUrl"
+              class="audio-preview mt-3"
+            >
+              <div class="d-flex justify-content-center align-items-center">
+                <button
+                  class="btn btn-sm btn-primary me-2"
+                  (click)="playAudioPreview()"
+                  *ngIf="!isPlaying"
+                >
+                  <i class="bi bi-play-fill"></i> Play
+                </button>
+                <button
+                  class="btn btn-sm btn-secondary me-2"
+                  (click)="pauseAudioPreview()"
+                  *ngIf="isPlaying"
+                >
+                  <i class="bi bi-pause-fill"></i> Pause
+                </button>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  (click)="startRecording()"
+                >
+                  <i class="bi bi-mic"></i> Record Again
+                </button>
+              </div>
+              <div class="audio-preview-box mt-2">
+                <audio
+                  *ngIf="audioUrl"
+                  [src]="audioUrl"
+                  controls
+                  class="w-100"
+                ></audio>
+              </div>
+            </div>
+          </div>
+          <button
+            role="button"
+            class="btn px-5 py-2 text-white btn-submit"
+            style="background-color: #b0181b"
+            (click)="submitRecording()"
+            [disabled]="submittingInProgress || loading"
+          >
+            {{ submittingInProgress ? "Submitting..." : "Submit" }}
+          </button>
+        </div>
+      </div>
+      <div
+        *ngIf="showRecordingToast"
+        class="custom-toast"
+        style="
+          z-index: 1000;
+          background-color: #ff4444;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 4px;
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+        "
+      >
+        ⚠️ Please record your answer before submitting
+      </div>
+      <div *ngIf="showToast" class="custom-toast">
+        ⚠️ Only 1 minute remaining!
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="activeStage === 'Writing' && !apiError">
+  <app-writing
+    [activeId]="activeId"
+    (submitEvent)="moveToNextStage()"
+  ></app-writing>
+</div>
+
+<div *ngIf="activeStage === 'Speaking' && !apiError">
+  <app-speaking-1
+    [activeId]="activeId"
+    (submitEvent)="moveToNextStage()"
+  ></app-speaking-1>
+</div>
+
+<div *ngIf="activeStage === 'Listening' && !apiError">
+  <app-speaking-2
+    [activeId]="activeId"
+    (submitEvent)="moveToNextStage()"
+  ></app-speaking-2>
+</div>
+
+<app-instruction-modal
+  [stageType]="nextStageToMove"
+  [showModal]="showInstructionModal"
+  [activeId]="activeId"
+  (modalClosed)="onModalClosed()"
+></app-instruction-modal>
+<app-loader [isLoading]="loading"></app-loader>

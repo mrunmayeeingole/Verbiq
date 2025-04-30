@@ -1,0 +1,119 @@
+<!-- form.component.html -->
+<!-- <div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="instruction-text mb-3">
+        Read below paragraph and translate to English
+        <small class="text-muted float-end">01:20 mins</small>
+      </div>
+      
+      <div class="french-text-box p-3 mb-4">
+        <p>
+          Notre politique d'engagement commercial est conçue pour favoriser des relations transparentes, éthiques et
+          mutuellement bénéfiques avec toutes les parties prenantes, y compris les clients, partenaires, fournisseurs et
+          employés. Nous nous engageons à maintenir les normes les plus élevées de professionnalisme et d'intégrité dans
+          chaque interaction. Cette politique garantit que toutes les activités commerciales sont menées en conformité avec les
+          lois et réglementations applicables, en mettant l'accent sur l'importance de l'équité, du respect et de la responsabilité.
+          Nous encourageons une communication ouverte et une collaboration pour comprendre et répondre efficacement aux
+          besoins de nos parties prenantes. Grâce à cette politique, nous visons à établir et à maintenir des partenariats à long
+          terme qui stimulent l'innovation, la croissance et le succès partagé tout en respectant nos valeurs fondamentales
+          d'excellence et de conduite éthique.
+        </p>
+      </div>
+      
+      <div class="translation-area mb-4">
+        <textarea class="form-control" rows="6" placeholder="Type your translation here"></textarea>
+      </div>
+      
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-outline-primary bookmark-btn">
+          <i class="fa fa-bookmark"></i> Bookmark
+        </button>
+        <button class="btn btn-danger submit-btn">Submit</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row m-0 p-0">
+    <div class="col-6 col-lg-6">
+      <h2 class="fw-normal textColor border-title py-3">
+        {{ questionDetails?.heading }}
+      </h2>
+    </div>
+    <div class="col-6 col-lg-6">
+      <p class="text-end text-muted p-3" style="font-size: 16px">
+        {{ remainingTime }}
+      </p>
+    </div>
+  </div>
+  <div *ngIf="questionDetails?.questionType === 'text'" class="paragraph-box p-3">
+    <p class="justified-text fw-medium mt-5 no-copy" preventRightClick>
+      {{ questionDetails?.question }}
+    </p>
+    <!-- <select (change)="onKeyboardChange($event)">
+      <option value="us">English (US)</option>
+      <option value="japanese">Japanese - Kana</option>
+      <option value="french">French</option>
+      <option value="spanish">Spanish</option>
+      <option value="german">German</option>
+      <option value="italian">Italian</option>
+    </select> -->
+    
+    <textarea class="form-control w-100 mt-5" [(ngModel)]="answerText" rows="6" placeholder="Type your translation here"></textarea>
+    <!-- <div id="KeymanWebControl"></div> -->
+  </div>
+  
+  <div *ngIf="questionDetails?.questionType === 'mcq'" class="paragraph-box p-2">
+    <div class="px-4">
+      <div *ngIf="questionDetails.passage" class="justified-text passage-text mb-3 no-copy" preventRightClick>
+        {{ questionDetails?.passage }}
+      </div>
+      <div class="question-text mb-4 no-copy" preventRightClick>
+        {{ questionDetails?.question }}
+      </div>
+      <div class="mcq-container">
+        <div *ngFor="let option of questionDetails?.options; let i = index">
+          <div 
+            class="mcq-option"
+            (click)="onOptionSelect(option)"
+            [class.selected]="selectedAnswer === option?.optionText">
+            <span class="option-letter">{{ ['A', 'B', 'C', 'D'][i] }}</span>
+            <span class="option-text">{{ option?.optionText }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="text-center">
+      <div class="d-flex justify-content-center justify-content-between ms-5 mt-5" style="width: 50%">
+        <button 
+        class="btn btn-light border mt-2">
+        &nbsp;
+        <i class="bi bi-bookmark-fill" style="color:#b0181b"></i>&nbsp;
+        Bookmark
+      </button>
+        <!-- <button 
+        *ngIf="questionDetails?.questionType === 'mcq'" 
+        class="btn btn-light border mt-2">
+        &nbsp;
+        <i class="bi bi-bookmark-fill" style="color:#b0181b"></i>&nbsp;
+        Bookmark
+      </button> -->
+        <button 
+        (click)="verifyQuestion()" 
+        class="btn btn-danger mt-2 ms-5"
+        [disabled]="(questionDetails?.questionType === 'mcq' && !selectedAnswer) || (questionDetails?.questionType !== 'mcq' && (!answerText || !answerText.trim()))">
+        Submit
+      </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showToast" class="custom-toast">
+    ⚠️ Only 1 minute remaining!
+  </div>
+</div>
+<app-loader [isLoading]="loading"></app-loader>

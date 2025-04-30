@@ -1,0 +1,38 @@
+.textColor{
+    color: #00475D;
+}
+.mb{
+  margin-bottom: 0.1px;
+}
+.btn-danger{
+     background-color: #B0181B !important;
+     color: white !important;
+}
+
+.TopMargin{
+    margin-top:9%;
+  }
+
+  .border-box {
+    width: 50%;
+    border: 1px solid #00475d; /* Added "solid" for the border style */
+    border-radius: 5px;
+    padding: 10px; /* Optional: Adds padding inside the border */
+  }
+  .centyer {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    /* justify-content: center; */
+    /* height: 100vh;  */
+    text-align: center;
+  }
+
+  .btn-danger{
+    background-color: #B0181B !important;
+    color: white !important;
+}
+
+.topMar{
+    margin-top: 5rem;
+    }

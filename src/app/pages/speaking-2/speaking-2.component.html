@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <div class="row m-0 p-0">
+    <div class="col-6 col-lg-6">
+      <h2 class="fw-normal textColor border-title py-3">
+        {{ questionDetails?.heading }}
+      </h2>
+    </div>
+    <div class="col-6 col-lg-6">
+      <p class="text-end text-muted p-3" style="font-size: 16px">
+        {{ remainingTime }}
+      </p>
+    </div>
+  </div>
+  <!-- <video controls [src]="videoPreviewUrl" width="400"></video> -->
+  <!-- Text type question -->
+  <div *ngIf="questionDetails?.questionType === 'text'" class="paragraph-box p-3">
+    <p class="text-center fw-medium mt-5">
+      <audio #audioPlayer [src]="sanitizedAudioUrl" controls></audio>
+    </p>
+    <textarea 
+      class="form-control w-100 mt-5" 
+      [(ngModel)]="answerText" 
+      rows="6" 
+      placeholder="Type your answer here">
+    </textarea>
+  </div>
+
+  <!-- MCQ type question -->
+  <div *ngIf="questionDetails?.questionType === 'mcq'" class="paragraph-box p-3">
+    <div class="text-center TopMargin">
+      <div class="question-text mb-4 no-copy" preventRightClick>
+        {{ questionDetails?.question }}
+      </div>
+      <div class="mcq-container">
+        <div *ngFor="let option of questionDetails?.options; let i = index">
+          <div 
+            class="mcq-option"
+            (click)="onOptionSelect(option)"
+            [class.selected]="selectedAnswer === option.optionText"
+          >
+            <span class="option-letter">{{ ['A', 'B', 'C', 'D'][i] }}</span>
+            <span class="option-text">{{ option.optionText }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Buttons -->
+  <div class="row">
+    <div class="text-center mt-5">
+      <div class="d-flex justify-content-center justify-content-center ms-5 mt-5" style="width: 50%">
+        <!-- <button class="btn btn-light border mt-2">
+          <i class="bi bi-bookmark-fill" style="color: #b0181b"></i>
+          Bookmark
+        </button> -->
+        <button 
+          (click)="verifyQuestion()" 
+          class="btn btn-danger mt-2 ms-5"
+          [disabled]="(questionDetails?.questionType === 'mcq' && !selectedAnswer) || 
+                     (questionDetails?.questionType === 'text' && (!answerText || !answerText.trim()))">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="recording-status" [class.active]="isRecording">
+  <div class="recording-indicator"></div>
+  <span>{{ isRecording ? 'Recording in progress' : 'Recording paused' }}</span>
+  <span *ngIf="isRecording" class="recording-time">{{ recordingDuration | date:'mm:ss' }}</span>
+</div> -->
+
+<!-- Video Preview Section
+<div class="video-preview-section" *ngIf="showPreview">
+  <div class="modal-backdrop" (click)="closeVideoPreview()"></div>
+  <div class="video-modal">
+    <h3>Video Preview</h3>
+    <video #videoPlayer [src]="videoPreviewUrl" controls width="100%"></video>
+    <div class="video-controls">
+      <button (click)="closeVideoPreview()" class="close-button">Close Preview</button>
+    </div>
+  </div>
+</div> -->
+
+<!-- Action Buttons -->
+<!-- <div class="action-buttons">
+  <button (click)="checkVideo()" class="check-video-button">Check Recording</button>
+  <button (click)="verifyQuestion()" class="submit-button" [disabled]="!isAnswerSelected && !answerText">
+    Submit Answer
+  </button>
+</div> -->
+<div *ngIf="showToast" class="custom-toast">
+  ⚠️ Only 1 minute remaining!
+</div>
+<!-- Loading Indicator -->
+<!-- <div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+  <p>Loading...</p>
+</div>
+
+<div *ngIf="evaluation" class="evaluation-results">
+  <h3>Evaluation Results</h3>
+  <div class="evaluation-content">
+    {{ evaluation }}
+  </div>
+</div> -->
+
+<app-loader [isLoading]="loading"></app-loader>

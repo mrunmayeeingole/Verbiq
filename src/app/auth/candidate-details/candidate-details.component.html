@@ -1,0 +1,136 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-body fixed-top">
+      <div class="container-fluid justify-content-center">
+        <a class="navbar-brand" href="#">
+          <img
+            src="/assets/images/logo.svg"
+            alt="Logo"
+            class="bd-placeholder-img rounded-0"
+            style="width: 140px; max-height: 100px;"
+          />
+        </a>
+      </div>
+    </nav>
+  </header>
+  
+  <body>
+    <div class="container mt-5 pt-4">
+        <h4 class="text-center " style="color: #00475D;">Candidature Details</h4>
+        <hr class="my-2" style="border: 1px solid #00475D;">
+        <form [formGroup]="candidatureForm">
+            <div class="row justify-content-center mt-1">
+                <div class="col-md-4 mb-3">
+                    <label for="field1" class="form-label">First Name </label>
+                    <input type="text" class="form-control" id="field1" placeholder="Aditya"
+                        formControlName="firstName">
+                    <small
+                        *ngIf="candidatureForm.get('firstName')?.invalid && candidatureForm.get('firstName')?.touched"
+                        class="text-danger">
+                        First Name is required
+                    </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field2" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="field2" placeholder="Muthane"
+                        formControlName="laststName">
+                    <small
+                        *ngIf="candidatureForm.get('laststName')?.invalid && candidatureForm.get('laststName')?.touched"
+                        class="text-danger">
+                        Last Name is required
+                    </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field3" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="field3" placeholder="9309866010"
+                        formControlName="mobileNo">
+                    <div>
+                        <small
+                            *ngIf="candidatureForm.get('mobileNo')?.touched && candidatureForm.get('mobileNo')?.hasError('required')"
+                            class="text-danger">
+                            Contact number is required
+                        </small>
+
+                        <small
+                            *ngIf="candidatureForm.get('mobileNo')?.touched && candidatureForm.get('mobileNo')?.hasError('maxlength')"
+                            class="text-danger">
+                            Contact number must be 10 digits
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="field4" class="form-label">Email-ID</label>
+                    <input type="email" class="form-control" id="field4" placeholder="aditya@recrutory.com"
+                        formControlName="email">
+                    <div>
+                        <small
+                            *ngIf="candidatureForm.get('email')?.touched && candidatureForm.get('email')?.hasError('required')"
+                            class="text-danger">
+                            Email is required
+                        </small>
+
+                        <small
+                            *ngIf="candidatureForm.get('email')?.invalid && candidatureForm.get('email')?.hasError('email')"
+                            class="text-danger">
+                            Please enter a valid email address
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field5" class="form-label">Language</label>
+                    <input type="text" class="form-control" id="field5" placeholder="French" formControlName="language">
+                    <small *ngIf="candidatureForm.get('language')?.invalid && candidatureForm.get('language')?.touched"
+                        class="text-danger">
+                        Language is required
+                    </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field6" class="form-label">Proficiency</label>
+                    <input type="text" class="form-control" id="field6" placeholder="B2" formControlName="proficiency">
+                    <small
+                        *ngIf="candidatureForm.get('proficiency')?.invalid && candidatureForm.get('proficiency')?.touched"
+                        class="text-danger">
+                        Proficiency is required
+                    </small>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="field7" class="form-label">Process</label>
+                    <input type="text" class="form-control" id="field7" placeholder="Recrutory"
+                        formControlName="process">
+                    <small *ngIf="candidatureForm.get('process')?.invalid && candidatureForm.get('process')?.touched"
+                        class="text-danger">
+                        Process is required
+                    </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field8" class="form-label">Client</label>
+                    <input type="text" class="form-control" id="field8" placeholder="Hopper" formControlName="client">
+                    <small *ngIf="candidatureForm.get('client')?.invalid && candidatureForm.get('client')?.touched"
+                        class="text-danger">
+                        Client is required
+                    </small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="field9" class="form-label"></label>
+                    <!-- <input type="text" class="form-control" id="field9" placeholder="Enter text"> -->
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 150px;">
+                <button type="submit" (click)="onSubmit()" routerLinkActive="router-link-active"
+                    class="btn btn-danger px-5 py-2" style="width: 410px;">Confirm & Continue</button>
+            </div>
+        </form>
+    </div>
+  
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+    ></script>
+  </body>
+  
+ 

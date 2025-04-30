@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: #01475D;
+}
+.nav-link {
+    text-decoration: none;
+}
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.paragraph-box {
+    text-align: center;
+    color: #01475D;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.justified-text {
+    text-align: justify;
+    display: inline-block;
+    max-width: 946px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.textColor {
+    color: #01475D;
+}
+.border-title {
+    border-bottom: 2px solid #01475D;
+    display: inline-block;
+    padding-bottom: 5px;
+
+}
+
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Button styling */
+.btn-danger {
+    /* background-color: #b0181b;
+    padding-left: 25px;
+    padding-right: 25px; */
+}
+
+.btn-light {
+    border-color: #999;
+    color: #333;
+}
+
+.bi-bookmark-fill {
+    color: #b0181b;
+}
+
+/* Remove unnecessary topMar class since we're using Bootstrap spacing */
+.topMar {
+    margin-top: 10rem;
+}
+
+.mcq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.mcq-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.mcq-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #00475D;
+}
+
+.mcq-option.selected {
+  background-color: #00475D;
+  color: white;
+  border-color: #00475D;
+}
+
+.option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.selected .option-letter {
+  background-color: white;
+  color: #dc3545;
+}
+
+.option-text {
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  color: #2c3e50;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+} 

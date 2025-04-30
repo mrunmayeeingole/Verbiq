@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* body {
+    background-color: #f9f9f9;
+    color: #333;
+  } */
+
+.textColor {
+  color: #00475d;
+}
+.textRed {
+  color: #b0181b;
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  /* background-color: #fff;
+    border: 1px solid #ddd; */
+  border-radius: 8px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.attempt-status {
+  width: 100%;
+  text-align: center;
+}
+
+.TopMargin {
+  margin-top: 10%;
+}
+

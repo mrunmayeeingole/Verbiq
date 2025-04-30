@@ -1,0 +1,265 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: #01475D;
+}
+.nav-link {
+    text-decoration: none;
+}
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.paragraph-box {
+    text-align: center;
+    color: #01475D;
+}
+
+.justified-text {
+    text-align: justify; 
+    display: inline-block; 
+    width: 100%;
+    /* max-width: 946px;  */
+}
+
+.textColor {
+    color: #01475D;
+}
+.border-title {
+    border-bottom: 2px solid #01475D;
+    display: inline-block;
+    padding-bottom: 5px;
+
+}
+
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.topMar{
+margin-top: 10rem;
+} 
+
+.translation-area textarea {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+  }
+  .textColor {
+    color: #00475D;
+}
+
+/* .TopMargin {
+    margin-top: 9%;
+} */
+
+.border-box {
+    width: 50%;
+    border: 1px solid #00475d;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.border-box:hover {
+    background-color: #f8f9fa;
+}
+
+.border-box.selected {
+    background-color: #e9ecef;
+}
+
+.centyer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* 
+.instruction-text {
+    color: #006699;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    position: relative;
+  }
+  
+  .french-text-box {
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .french-text-box p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+  
+  .translation-area textarea {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  .bookmark-btn {
+    border-color: #999;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .submit-btn {
+    background-color: #b92525;
+    border: none;
+    padding-left: 25px;
+    padding-right: 25px;
+  } */
+
+.btn-danger {
+  background-color: #b0181b;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-light {
+  border-color: #999;
+  color: #333;
+}
+
+.bookmark-icon {
+  color: #b0181b;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  color: #2c3e50;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.passage-text {
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.mcq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 1rem; */
+}
+
+.mcq-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.mcq-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #00475D;
+}
+
+.mcq-option.selected {
+  background-color: #00475D;
+  color: white;
+  border-color: #00475D;
+}
+
+.option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.selected .option-letter {
+  background-color: white;
+  color: #dc3545;
+}
+
+.option-text {
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.paragraph-box {
+  /* background-color: #f8f9fa; */
+  /* border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); */
+  /* margin-bottom: 2rem; */
+}
+
+
+/* .no-copy {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.question-text, 
+.passage-text, 
+.justified-text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.question-text, 
+.passage-text, 
+.justified-text {
+  pointer-events: auto; 
+} */
+
+.keyboard-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select-label {
+  color: #dc3545;
+  font-weight: bold;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.keyboard-container {
+  margin-bottom: 200px; /* Space for keyboard */
+}
+
+.selector {
+  margin-bottom: 10px;
+}
+
+#keyboardInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

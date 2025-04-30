@@ -1,0 +1,75 @@
+<body>
+   
+    <nav   class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 2px solid #00475D;">
+        <a class="navbar-brand textColor fw-medium ms-5" href="#">Instructions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                </li>
+            </ul>
+            <img src="/assets/images/logo-head.JPG" alt="Logo" class="ms-auto mb" style="height: 50px;">
+        </div>
+    </nav>
+
+    <!-- Show error state -->
+    <div *ngIf="apiError" class="error-container">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+            <h2 class="error-title">Oops! Something went wrong</h2>
+            <p class="error-message">{{ apiError }}</p>
+            <div class="error-actions">
+                <button class="retry-button" (click)="getAllInstructions()">
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show normal content only when there's no error -->
+    <div *ngIf="!apiError">
+        <!-- <div class="text-end text-secondary mb-3" style="font-size: 1.0em;">
+            <p class="fw-light p-2 me-2">01:20 mins</p>
+        </div> -->
+
+        <div class="container mt-4">
+            <div *ngFor="let instruction of instructions">
+                <p><u class="textColor">{{ instruction.title }}:</u></p>
+                <ul>
+                    <li class="textColor">{{ instruction.subTitle }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center my-4">
+            <div *ngIf="permissionsError" class="error-message">
+                <p>{{ permissionsError }}</p>
+            </div>
+            
+            <div class="actions">
+                <!-- <button style="width: 13%;" routerLinkActive="router-link-active" type="button" class="btn btn-danger">Cancel</button> -->
+                <button 
+                style="width: 13%;" 
+                routerLinkActive="router-link-active" 
+                type="button" 
+                class="btn btn-danger"
+                [disabled]="loading" 
+                (click)="onProceedClick()">  <!-- Add click handler -->
+                <span *ngIf="loading">
+                    <i class="loading-spinner"></i> Processing...
+                </span>
+                <span *ngIf="!loading">
+                    Proceed to Exam
+                </span>
+            </button>
+            </div>
+        </div>
+    </div>
+
+    <app-loader [isLoading]="loading"></app-loader>
+</body>

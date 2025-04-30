@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row m-0 p-0">
+    <div class="col-6 col-lg-6">
+      <h2 class="fw-normal textColor border-title py-3">
+        {{ questionDetails?.heading }}
+      </h2>
+    </div>
+    <div class="col-6 col-lg-6">
+      <p class="text-end text-muted p-3" style="font-size: 16px">
+        {{ remainingTime }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Text type question -->
+  <div *ngIf="questionDetails?.questionType === 'text'" class="paragraph-box p-3">
+    <p class="justified-text fw-medium mt-5 no-copy" preventRightClick>
+      {{ questionDetails?.question }}
+    </p>
+  </div>
+
+  <!-- MCQ type question -->
+  <div *ngIf="questionDetails?.questionType === 'mcq'" class="paragraph-box p-3">
+    <div class="text-center TopMargin">
+      <div class="question-text mb-4 no-copy" preventRightClick>
+        {{ questionDetails?.question }}
+      </div>
+      <div class="mcq-container">
+        <div *ngFor="let option of questionDetails?.options; let i = index">
+          <div 
+            class="mcq-option"
+            (click)="onOptionSelect(option)"
+            [class.selected]="selectedAnswer === option?.optionText"
+          >
+            <span class="option-letter">{{ ['A', 'B', 'C', 'D'][i] }}</span>
+            <span class="option-text">{{ option?.optionText }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recording controls - only show for text type -->
+  <div *ngIf="questionDetails?.questionType === 'text'" class="row">
+    <div class="col-lg-12 m-0 p-0 mx-auto text-center mt-3">
+      <div class="microphone-container pb-3">
+        <img
+          *ngIf="!recordingComplete"
+          [ngClass]="{
+            'btn-danger': !isRecording || isPaused ,
+            'btn-light': isRecording && !isPaused
+          }"
+          (click)="toggleRecording()"
+          [src]="isRecording && !isPaused ? '/assets/images/mic.svg' : '/assets/images/9036216.png'"
+          width="80"
+          alt="Microphone"
+        />
+
+        <div *ngIf="recordingComplete && audioUrl" class="audio-preview mt-3">
+          <div class="d-flex justify-content-center align-items-center">
+            <button
+              class="btn btn-sm btn-primary me-2"
+              (click)="playAudioPreview()"
+              *ngIf="!isPlaying"
+            >
+              <i class="bi bi-play-fill"></i> Play
+            </button>
+            <button
+              class="btn btn-sm btn-secondary me-2"
+              (click)="pauseAudioPreview()"
+              *ngIf="isPlaying"
+            >
+              <i class="bi bi-pause-fill"></i> Pause
+            </button>
+            <button
+              class="btn btn-sm btn-outline-primary"
+              (click)="startRecording()"
+            >
+              <i class="bi bi-mic"></i> Record Again
+            </button>
+          </div>
+          <div class="audio-preview-box mt-2">
+            <audio *ngIf="audioUrl" [src]="audioUrl" controls class="w-100"></audio>
+          </div>
+        </div>
+      </div>
+
+     
+      <button
+          role="button"
+          class="btn px-5 py-2 text-white btn-submit"
+          style="background-color: #b0181b"
+          (click)="submitRecording()"
+       
+        >
+        Submit
+        </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showRecordingToast" class="custom-toast">
+  ⚠️ Please record your answer before submitting
+</div>
+<div *ngIf="showToast" class="custom-toast">
+  ⚠️ Only 1 minute remaining!
+</div>
+
+<app-loader [isLoading]="loading"></app-loader>

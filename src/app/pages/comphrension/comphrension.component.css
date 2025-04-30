@@ -1,0 +1,145 @@
+.container {
+  /* width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; */
+}
+
+/* Header */
+header {
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid #00475d;
+}
+
+header h2 {
+  color: #00475d;
+  margin: 0;
+}
+
+/* Content Layout */
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+/* Passage Section */
+.passage {
+    margin-top: 0%;
+  width: 60%;
+  line-height: 1.6;
+}
+
+.passage p {
+  color: #00475d;
+  font-size: 18px;
+  /* padding: 20px; */
+}
+
+/* Question Section */
+.question-section {
+    margin-top: 0%;
+  width: 40%;
+  border-left: 1px solid #00475d;
+  padding-left: 20px;
+}
+
+.question-header {
+  text-align: right;
+  color: #888;
+  font-size: 14px;
+}
+
+.question {
+  margin-top: 10px;
+}
+
+.question p {
+  color: #00475d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.options label {
+  display: block;
+  margin-bottom: 10px;
+  color: #00475d;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #c30000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
+}
+
+.submit-button:hover {
+  background-color: #a00000;
+}
+
+.textColor {
+  color: #00475d;
+}
+.mb {
+  margin-bottom: 0.1px;
+}
+.btn-danger {
+  background-color: #b0181b !important;
+  color: white !important;
+}
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .option {
+    padding: 10px;
+    border: 1px solid #00475d;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #00475d;
+    font-weight: bold;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  .option:hover {
+    background-color: #e6f7ff;
+    border-color: #007bb5;
+  }
+  
+  .option.selected {
+    background-color: #00475d;
+    color: white;
+    border-color:  #00475d;
+  }
+  
+  .submit-button {
+    background-color: #c30000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #a00000;
+  }

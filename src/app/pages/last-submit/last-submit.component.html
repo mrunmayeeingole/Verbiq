@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item  mx-3">
+        <a class="nav-link" href="#" style="color: #01475d">Final Submission</a>
+      </li>
+    </ul>
+    <img
+      src="/assets/images/logo-head.JPG"
+      alt="Recruitory Logo"
+      style="height: 50px"
+    />
+  </div>
+</nav>
+
+<div class="container TopMargin">
+  <main>
+    <section class="attempt-status" *ngIf="submitDetails">
+      <div class="status-item" *ngFor="let type of submitDetails.typeIds">
+        <div class="status-header">
+          <span class="textColor">{{ type.typeId.typeName }}</span>
+          <img src="/assets/images/{{ type.completed ? 'list_check.png' : 'wrong.png' }}" 
+               alt="field" 
+               class="image">
+        </div>
+        <p [class.text-muted]="type.completed" [class.warning]="!type.completed">
+          {{ type.questionCount }} of {{ type.noOfQuizQuestions }} attempted
+        </p>
+      </div>
+    </section>
+    
+    <section class="final-message">
+      <p class="p-3">
+        It seems you haven’t answered all the questions. Please make sure to attempt all questions and then submit the assessment.
+      </p>
+      <!-- <button [routerLink]="['/pages/final-submit']" routerLinkActive="router-link-active"  class="submit-btn">Submit anyway</button> -->
+      <button (click)="verifyQuestionAnswer()" class="submit-btn">Submit anyway</button>
+    </section>
+  </main>
+</div>

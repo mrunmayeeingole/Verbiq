@@ -1,0 +1,99 @@
+header {
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid #00475d;
+  }
+  
+  header h2 {
+    color: #00475d;
+    margin: 0;
+  }
+.container {
+    width: 800px;
+    /* background-color: #ffffff; */
+    padding: 20px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00475d;
+    padding-bottom: 10px;
+  }
+  
+  .header h1 {
+    color: #00475d;
+    font-size: 24px;
+  }
+  
+  .timer {
+    font-size: 16px;
+    color: #999999;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .option {
+    padding: 15px;
+    border: 2px solid #00475d;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #00475d;
+    background-color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .option:hover {
+    background-color: #e6f7ff;
+    border-color: #007bb5;
+  }
+  
+  .option.selected {
+    background-color: #00475d;
+    color: white;
+    border-color: #00475d;
+  }
+  
+  .bookmark-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #c30000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bookmark-button:hover {
+    background-color: #a00000;
+  }
+
+
+  .textColor {
+    color: #00475d;
+  }
+  .mb {
+    margin-bottom: 0.1px;
+  }
+  .btn-danger {
+    background-color: #b0181b !important;
+    color: white !important;
+  }
+
+  .question-header {
+    text-align: right;
+    color: #888;
+    font-size: 14px;
+  }

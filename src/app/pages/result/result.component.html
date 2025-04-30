@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item mx-3">
+        <a class="nav-link" href="#" style="color: #01475d">Result</a>
+      </li>
+    </ul>
+    <img
+      src="/assets/images/logo-head.JPG"
+      alt="Recruitory Logo"
+      style="height: 50px"
+    />
+  </div>
+</nav>
+
+<div class="">
+  <div class="proficiency-chart-container">
+    <canvas #proficiencyChart></canvas>
+  </div>
+</div>
+
+<div class="assessment-results">
+  <h3>Language Assessment Data</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of assessmentResults; let i = index">
+        <!-- Insert blank row after the first row and then after every two rows -->
+        <tr *ngIf="i === 1 || (i > 1 && (i - 1) % 2 === 0)">
+          <td></td> <!-- Blank row -->
+        </tr>
+        <tr>
+          <td>{{ item.title }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<button
+  [routerLink]="['/pages/final-submit']"
+  routerLinkActive="router-link-active"
+  class="submit-btn"
+>
+  Continue
+</button>

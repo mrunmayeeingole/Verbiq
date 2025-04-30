@@ -1,0 +1,7 @@
+<!-- App Component -->
+
+<div *ngIf="!isMobileRestricted">
+    <router-outlet></router-outlet>
+  </div>
+  <app-mobile-restricted *ngIf="isMobileRestricted"></app-mobile-restricted>
+<!-- <router-outlet></router-outlet> -->

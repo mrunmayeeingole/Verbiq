@@ -1,0 +1,136 @@
+/* Updated instruction-modal.component.scss */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(221, 215, 215);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 750px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  
+  &.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+  
+  .modal-title {
+    margin: 0;
+    color: #01475D;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 1rem;
+  }
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 130px); /* Accounting for header and footer */
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.instruction-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .instruction-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #b0181b;
+    
+    i {
+      padding: 1rem;
+      border-radius: 50%;
+      background-color: rgba(176, 24, 27, 0.1);
+    }
+  }
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+  width: 100%;
+  
+  h6.fw-bold {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #01475D;
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 0.5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+    max-height: calc(85vh - 120px);
+  }
+  
+  .instruction-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mb-3 h6.fw-bold {
+    font-size: 1rem;
+  }
+  
+  .mb-3 p {
+    font-size: 0.9rem;
+  }
+}

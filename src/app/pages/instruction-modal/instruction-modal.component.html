@@ -1,0 +1,29 @@
+<!-- Updated instruction-modal.component.html -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content" [class.show]="showModal">
+    <div class="modal-header">
+      <h5 class="modal-title" [title]="stageType + ' Instructions'">{{stageType}} Instructions</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <div class="instruction-content">
+        <div class="instruction-icon">
+          <i *ngIf="stageType === 'Reading'" class="bi bi-book"></i>
+          <i *ngIf="stageType === 'Writing'" class="bi bi-pencil-square"></i>
+          <i *ngIf="stageType === 'Speaking'" class="bi bi-mic"></i>
+          <i *ngIf="stageType === 'Listening'" class="bi bi-headphones"></i>
+        </div>
+        <div *ngFor="let item of instructionsList" class="mb-3">
+          <h6 class="fw-bold" [title]="item.title">{{ item.title }}</h6>
+          <p>{{ item.subTitle }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn px-4 py-2 text-white" style="background-color: #b0181b;" (click)="closeModal()">
+        Begin {{stageType}}
+      </button>
+    </div>
+  </div>
+</div>
+<app-loader [isLoading]="loading"></app-loader>
